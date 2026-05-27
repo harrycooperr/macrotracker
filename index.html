@@ -20,7 +20,7 @@
     --bg:#0a0d12; --bg2:#10151e; --card:#141a25; --card2:#1a2230; --line:#222b3a;
     --text:#f0f4fa; --muted:#76808f; --track:#1e2632;
     --c-cal:#ff6b35; --c-cal-2:#ff9558;
-    --c-pro:#3dd6c4; --c-carb:#ffc145; --c-sug:#f25f9c;
+    --c-pro:#3dd6c4; --c-carb:#ffc145; --c-sug:#f25f9c; --c-fat:#a78bfa;
     --c-over:#ef4444; --accent:#ff6b35;
     --shadow:0 10px 40px rgba(0,0,0,.45);
   }
@@ -65,13 +65,14 @@
   .leg .llbl{font-size:11px;color:var(--muted);margin-top:2px;font-weight:500}
 
   /* ---------- MACRO ARCS ---------- */
-  .macros{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
-  .macro-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 10px 14px;text-align:center;position:relative;overflow:hidden}
-  .macro-arcwrap{position:relative;width:74px;height:74px;margin:0 auto 8px}
+  .macros{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:14px}
+  .macro-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px 12px;position:relative;overflow:hidden;display:flex;align-items:center;gap:12px}
+  .macro-arcwrap{position:relative;width:64px;height:64px;flex-shrink:0}
   .macro-arcwrap svg{transform:rotate(-90deg)}
-  .macro-arc-center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Bricolage Grotesque',sans-serif;font-size:15px;font-weight:700}
-  .macro-name{font-size:12px;font-weight:600;color:var(--text)}
-  .macro-sub{font-size:11px;color:var(--muted);margin-top:2px}
+  .macro-arc-center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Bricolage Grotesque',sans-serif;font-size:14px;font-weight:700}
+  .macro-text{text-align:left;min-width:0}
+  .macro-name{font-size:13px;font-weight:600;color:var(--text)}
+  .macro-sub{font-size:12px;color:var(--muted);margin-top:3px}
   .macro-dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px;vertical-align:middle}
 
   /* ---------- SCAN ACTIONS ---------- */
@@ -86,6 +87,19 @@
   .scan-btn .ss{font-size:11px;color:var(--muted);font-weight:500;margin-top:2px}
   .manual-btn{width:100%;margin-top:12px;display:flex;align-items:center;justify-content:center;gap:8px;background:var(--card);border:1px dashed var(--line);color:var(--text);border-radius:16px;padding:15px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:.15s}
   .manual-btn:active{transform:scale(.98);border-color:var(--accent);border-style:solid}
+  /* recent foods */
+  .recents-sec{margin-top:22px}
+  .recents-head{display:flex;align-items:center;justify-content:space-between;font-family:'Bricolage Grotesque',sans-serif;font-size:15px;font-weight:700;margin:0 4px 12px}
+  .recents-hint{font-size:11px;color:var(--muted);font-weight:500;font-family:'Inter Tight',sans-serif}
+  .recents-row{display:flex;gap:10px;overflow-x:auto;padding:2px 4px 6px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .recents-row::-webkit-scrollbar{display:none}
+  .recent-chip{flex-shrink:0;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;cursor:pointer;transition:.15s;min-width:130px;max-width:170px;text-align:left;position:relative;overflow:hidden}
+  .recent-chip:active{transform:scale(.96);border-color:var(--accent)}
+  .recent-chip .rc-bar{position:absolute;left:0;top:0;bottom:0;width:4px}
+  .recent-chip .rc-name{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-left:6px}
+  .recent-chip .rc-meta{font-size:11px;color:var(--muted);margin-top:4px;padding-left:6px}
+  .recent-chip .rc-add{position:absolute;top:10px;right:10px;font-size:13px;color:var(--accent);font-weight:700}
+  .recents-clear{background:none;border:none;color:var(--muted);font-size:11px;cursor:pointer;font-family:inherit;text-decoration:underline}
 
   /* ---------- LOG ---------- */
   .log{margin-top:24px}
@@ -142,13 +156,13 @@
   .badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:5px 11px;border-radius:99px;margin:8px 0 18px}
   .badge.db{background:rgba(61,214,196,.14);color:var(--c-pro)}
   .badge.ai{background:rgba(255,193,69,.14);color:var(--c-carb)}
-  .preview-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:20px}
-  .preview{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:13px 6px;text-align:center;position:relative;overflow:hidden}
+  .preview-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:20px}
+  .preview{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px 3px;text-align:center;position:relative;overflow:hidden}
   .preview::after{content:'';position:absolute;left:0;right:0;bottom:0;height:3px}
   .preview.cal::after{background:var(--c-cal)} .preview.pro::after{background:var(--c-pro)}
-  .preview.carb::after{background:var(--c-carb)} .preview.sug::after{background:var(--c-sug)}
-  .preview .num{display:block;font-family:'Bricolage Grotesque',sans-serif;font-size:20px;font-weight:800;transition:.2s}
-  .preview .lbl{display:block;font-size:10px;color:var(--muted);margin-top:3px;text-transform:uppercase;letter-spacing:.5px}
+  .preview.carb::after{background:var(--c-carb)} .preview.sug::after{background:var(--c-sug)} .preview.fat::after{background:var(--c-fat)}
+  .preview .num{display:block;font-family:'Bricolage Grotesque',sans-serif;font-size:17px;font-weight:800;transition:.2s}
+  .preview .lbl{display:block;font-size:9px;color:var(--muted);margin-top:3px;text-transform:uppercase;letter-spacing:.3px}
   .field-label{display:block;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:9px}
   .gram-input input{width:100%;background:var(--card);border:1px solid var(--line);border-radius:13px;padding:15px 16px;color:var(--text);font-size:18px;font-weight:700;font-family:inherit;outline:none;transition:.15s}
   .gram-input input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(255,107,53,.13)}
@@ -245,6 +259,12 @@
   <button class="manual-btn" id="btnManual">✏️ Add food manually</button>
   <input type="file" id="labelFile" accept="image/*" capture="environment" style="display:none" />
 
+  <!-- RECENT FOODS -->
+  <section class="recents-sec" id="recentsSec" style="display:none">
+    <div class="recents-head">⏱ Recent foods<span class="recents-hint">tap to log again</span></div>
+    <div class="recents-row" id="recentsRow"></div>
+  </section>
+
   <!-- LOG -->
   <section class="log">
     <div class="log-head"><h2>Today's food</h2><span class="total" id="logTotal"></span></div>
@@ -278,6 +298,7 @@ let GOALS = loadGoals();
 const MACRO_DEFS = [
   {key:'protein', name:'Protein', color:'var(--c-pro)', raw:'#3dd6c4', unit:'g'},
   {key:'carbs',   name:'Carbs',   color:'var(--c-carb)',raw:'#ffc145', unit:'g'},
+  {key:'fat',     name:'Fat',     color:'var(--c-fat)', raw:'#a78bfa', unit:'g'},
   {key:'sugar',   name:'Sugar',   color:'var(--c-sug)', raw:'#f25f9c', unit:'g'},
 ];
 // Date key in LONDON local time (handles GMT/BST automatically), not UTC.
@@ -286,21 +307,50 @@ function londonDate(){
   return new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/London'}).format(new Date());
 }
 const todayKey = () => 'log:' + londonDate();
-function loadGoals(){ try{return {...{calories:2200,protein:150,carbs:220,sugar:50},...JSON.parse(localStorage.getItem('goals')||'{}')};}catch{return {calories:2200,protein:150,carbs:220,sugar:50};} }
+function loadGoals(){ try{return {...{calories:2200,protein:150,carbs:220,fat:70,sugar:50},...JSON.parse(localStorage.getItem('goals')||'{}')};}catch{return {calories:2200,protein:150,carbs:220,fat:70,sugar:50};} }
 function saveGoals(g){ localStorage.setItem('goals',JSON.stringify(g)); }
 function loadLog(){ try{return JSON.parse(localStorage.getItem(todayKey())||'[]');}catch{return [];} }
 function saveLog(l){ localStorage.setItem(todayKey(),JSON.stringify(l)); }
 function getKey(){ return localStorage.getItem('gemini_key')||''; }
 function setKey(k){ localStorage.setItem('gemini_key',k); }
+function loadRecents(){ try{return JSON.parse(localStorage.getItem('recents')||'[]');}catch{return [];} }
+function saveRecents(l){ localStorage.setItem('recents',JSON.stringify(l.slice(0,15))); }
+function pushRecent(food){
+  // store the food definition (not the portion) so it can be re-logged at any amount
+  const def={name:food.name,per100:{...food.per100},servingG:food.servingG||null};
+  let list=loadRecents().filter(f=>f.name.toLowerCase()!==def.name.toLowerCase());
+  list.unshift(def); saveRecents(list); recents=loadRecents();
+}
+let recents = loadRecents();
 let log = loadLog();
 let justAddedTs = null; // for entry-in animation
 
 /* ===================== MATH ===================== */
-function entryMacros(e){const f=e.grams/100;return{calories:e.per100.calories*f,protein:e.per100.protein*f,carbs:e.per100.carbs*f,sugar:e.per100.sugar*f};}
-function totals(){return log.reduce((a,e)=>{const m=entryMacros(e);a.calories+=m.calories;a.protein+=m.protein;a.carbs+=m.carbs;a.sugar+=m.sugar;return a;},{calories:0,protein:0,carbs:0,sugar:0});}
+function entryMacros(e){const f=e.grams/100;const p=e.per100;return{calories:(p.calories||0)*f,protein:(p.protein||0)*f,carbs:(p.carbs||0)*f,fat:(p.fat||0)*f,sugar:(p.sugar||0)*f};}
+function totals(){return log.reduce((a,e)=>{const m=entryMacros(e);a.calories+=m.calories;a.protein+=m.protein;a.carbs+=m.carbs;a.fat+=m.fat;a.sugar+=m.sugar;return a;},{calories:0,protein:0,carbs:0,fat:0,sugar:0});}
 const r=n=>Math.round(n);
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
-function dominantMacro(e){const m=entryMacros(e);const p=m.protein*4,c=m.carbs*4;if(p>=c&&p>=m.sugar*4)return MACRO_DEFS[0];if(c>=p)return MACRO_DEFS[1];return MACRO_DEFS[2];}
+function dominantMacro(e){const m=entryMacros(e);const p=m.protein*4,c=m.carbs*4,fa=m.fat*9;if(p>=c&&p>=fa)return MACRO_DEFS[0];if(c>=fa)return MACRO_DEFS[1];return MACRO_DEFS[2];}
+function dominantOf(per100){const p=(per100.protein||0)*4,c=(per100.carbs||0)*4,fa=(per100.fat||0)*9;if(p>=c&&p>=fa)return MACRO_DEFS[0];if(c>=fa)return MACRO_DEFS[1];return MACRO_DEFS[2];}
+
+function renderRecents(){
+  const sec=document.getElementById('recentsSec'),row=document.getElementById('recentsRow');
+  if(!recents.length){sec.style.display='none';return;}
+  sec.style.display='block';
+  row.innerHTML=recents.map((f,i)=>{
+    const sw=dominantOf(f.per100);
+    return `<div class="recent-chip" data-r="${i}">
+      <span class="rc-bar" style="background:${sw.color}"></span>
+      <span class="rc-add">＋</span>
+      <div class="rc-name">${esc(f.name)}</div>
+      <div class="rc-meta">${r(f.per100.calories)} kcal /100g</div>
+    </div>`;
+  }).join('');
+  row.querySelectorAll('[data-r]').forEach(c=>c.onclick=()=>{
+    const f=recents[+c.dataset.r];
+    openAddSheet({name:f.name,per100:{...f.per100},servingG:f.servingG},false);
+  });
+}
 
 /* ===================== RENDER ===================== */
 const CIRC = 2*Math.PI*92; // hero ring
@@ -331,24 +381,27 @@ function render(animate=false){
 
   // macro arcs
   document.getElementById('macros').innerHTML=MACRO_DEFS.map(m=>{
-    const val=t[m.key],goal=GOALS[m.key];const p=Math.min(val/goal,1);const ov=val>goal;
-    const R=30,C=2*Math.PI*R;
+    const val=t[m.key],goal=GOALS[m.key];const p=goal>0?Math.min(val/goal,1):0;const ov=val>goal;
+    const R=26,C=2*Math.PI*R;
     return `<div class="macro-card">
       <div class="macro-arcwrap">
-        <svg width="74" height="74" viewBox="0 0 74 74">
-          <circle cx="37" cy="37" r="${R}" fill="none" stroke="var(--track)" stroke-width="7"/>
-          <circle cx="37" cy="37" r="${R}" fill="none" stroke="${ov?'var(--c-over)':m.color}" stroke-width="7"
+        <svg width="64" height="64" viewBox="0 0 64 64">
+          <circle cx="32" cy="32" r="${R}" fill="none" stroke="var(--track)" stroke-width="6"/>
+          <circle cx="32" cy="32" r="${R}" fill="none" stroke="${ov?'var(--c-over)':m.color}" stroke-width="6"
             stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C*(1-p)}"
             style="transition:stroke-dashoffset .9s cubic-bezier(.22,1,.36,1)"/>
         </svg>
         <div class="macro-arc-center" style="color:${ov?'var(--c-over)':m.color}">${Math.round(p*100)}%</div>
       </div>
-      <div class="macro-name"><span class="macro-dot" style="background:${m.color}"></span>${m.name}</div>
-      <div class="macro-sub">${r(val)} / ${goal}${m.unit}</div>
+      <div class="macro-text">
+        <div class="macro-name"><span class="macro-dot" style="background:${m.color}"></span>${m.name}</div>
+        <div class="macro-sub">${r(val)} / ${goal}${m.unit}</div>
+      </div>
     </div>`;
   }).join('');
 
   // log
+  renderRecents();
   document.getElementById('logTotal').textContent=log.length?`${log.length} item${log.length>1?'s':''} · ${r(t.calories)} kcal`:'';
   const list=document.getElementById('logList');
   if(!log.length){list.innerHTML=`<div class="empty"><div class="big">🍽️</div>Nothing logged yet.<br>Scan a barcode or snap a label to start.</div>`;return;}
@@ -359,7 +412,7 @@ function render(animate=false){
       <span class="swatch" style="background:${sw.color}"></span>
       <div class="entry-info">
         <div class="entry-name">${esc(e.name)}</div>
-        <div class="entry-meta"><span>${e.grams}g</span><span>P<b>${r(m.protein)}</b></span><span>C<b>${r(m.carbs)}</b></span><span>S<b>${r(m.sugar)}</b></span></div>
+        <div class="entry-meta"><span>${e.grams}g</span><span>P<b>${r(m.protein)}</b></span><span>C<b>${r(m.carbs)}</b></span><span>F<b>${r(m.fat)}</b></span><span>S<b>${r(m.sugar)}</b></span></div>
       </div>
       <div class="entry-cal">${r(m.calories)}</div>
       <button class="entry-del" data-del="${i}">✕</button>
@@ -451,7 +504,7 @@ async function lookupBarcode(code){
   const n=data.product.nutriments||{};const num=v=>(typeof v==='number'&&!isNaN(v))?v:0;
   return{name:[data.product.product_name,data.product.brands].filter(Boolean).join(' · ')||('Barcode '+code),
     servingG:num(data.product.serving_quantity)||null,
-    per100:{calories:num(n['energy-kcal_100g']),protein:num(n['proteins_100g']),carbs:num(n['carbohydrates_100g']),sugar:num(n['sugars_100g'])}};
+    per100:{calories:num(n['energy-kcal_100g']),protein:num(n['proteins_100g']),carbs:num(n['carbohydrates_100g']),fat:num(n['fat_100g']),sugar:num(n['sugars_100g'])}};
 }
 
 /* ===================== LABEL → GEMINI ===================== */
@@ -466,7 +519,7 @@ function fileToBase64(file){return new Promise((res,rej)=>{const fr=new FileRead
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 async function readLabel(b64,mime){
   const prompt=`You are reading a nutrition facts label from a photo. Return ONLY raw JSON (no markdown) with this shape:
-{"name":string,"servingSizeG":number|null,"per100":{"calories":number,"protein":number,"carbs":number,"sugar":number}}
+{"name":string,"servingSizeG":number|null,"per100":{"calories":number,"protein":number,"carbs":number,"fat":number,"sugar":number}}
 All per100 values are PER 100 GRAMS. If the label gives per-serving values, convert to per-100g using the serving size in grams. Missing values = 0. name = product name if visible else "Scanned product".`;
   const body=JSON.stringify({contents:[{parts:[{text:prompt},{inline_data:{mime_type:mime,data:b64}}]}],generationConfig:{temperature:0,responseMimeType:'application/json'}});
   const url=`https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${getKey()}`;
@@ -481,7 +534,7 @@ All per100 values are PER 100 GRAMS. If the label gives per-serving values, conv
       const data=await res.json();const text=data?.candidates?.[0]?.content?.parts?.[0]?.text||'{}';
       let p; try{ p=JSON.parse(text.replace(/```json|```/g,'').trim()); }catch{ throw new Error('Couldn\\u2019t read that label — try a clearer photo'); }
       return{name:p.name||'Scanned product',servingG:p.servingSizeG||null,
-        per100:{calories:+p.per100?.calories||0,protein:+p.per100?.protein||0,carbs:+p.per100?.carbs||0,sugar:+p.per100?.sugar||0}};
+        per100:{calories:+p.per100?.calories||0,protein:+p.per100?.protein||0,carbs:+p.per100?.carbs||0,fat:+p.per100?.fat||0,sugar:+p.per100?.sugar||0}};
     }
     lastStatus=res.status;
     if(res.status===503||res.status===429){ await sleep(800*Math.pow(2,attempt)); continue; } // backoff: 0.8s,1.6s,3.2s
@@ -509,7 +562,7 @@ function recalcGrams(){ if(amtMode==='servings'&&current.servingG){ currentGrams
 function drawSheet(){
   recalcGrams();
   const f=currentGrams/100;
-  const macros=[{key:'calories',label:'Cal',cls:'cal'},{key:'protein',label:'Protein',cls:'pro'},{key:'carbs',label:'Carbs',cls:'carb'},{key:'sugar',label:'Sugar',cls:'sug'}];
+  const macros=[{key:'calories',label:'Cal',cls:'cal'},{key:'protein',label:'Protein',cls:'pro'},{key:'carbs',label:'Carbs',cls:'carb'},{key:'fat',label:'Fat',cls:'fat'},{key:'sugar',label:'Sugar',cls:'sug'}];
   const previews=macros.map(m=>`<div class="preview ${m.cls}"><span class="num" data-pk="${m.key}">${r(current.per100[m.key]*f)}</span><span class="lbl">${m.label}</span></div>`).join('');
   const editBlock=editable?`<span class="field-label">Verify values (per 100g)</span><div class="editable-macros">
     ${macros.map(m=>`<div class="em-field"><label>${m.label} / 100g</label><input type="number" data-mk="${m.key}" value="${current.per100[m.key]}"/></div>`).join('')}</div>`:'';
@@ -568,13 +621,14 @@ function syncQuick(){sheet.querySelectorAll('.quick button').forEach(b=>b.classL
 function refreshPreview(){const f=currentGrams/100;sheet.querySelectorAll('.preview .num').forEach(el=>{const k=el.dataset.pk;el.textContent=r(current.per100[k]*f);el.style.transform='scale(1.12)';setTimeout(()=>el.style.transform='scale(1)',150);});}
 function commitEntry(){
   const ts=Date.now();log.push({name:current.name,per100:{...current.per100},grams:currentGrams,ts});saveLog(log);
+  pushRecent(current);
   justAddedTs=ts;closeSheet();render(true);confettiBurst();if(navigator.vibrate)navigator.vibrate([30,40,30]);status('✓ Added to your log',false,1700);
 }
 
 /* ===================== MANUAL ENTRY ===================== */
 document.getElementById('btnManual').onclick=openManual;
 function openManual(){
-  const fields=[{k:'calories',l:'Calories',u:'kcal',cls:'cal'},{k:'protein',l:'Protein',u:'g',cls:'pro'},{k:'carbs',l:'Carbs',u:'g',cls:'carb'},{k:'sugar',l:'Sugar',u:'g',cls:'sug'}];
+  const fields=[{k:'calories',l:'Calories',u:'kcal',cls:'cal'},{k:'protein',l:'Protein',u:'g',cls:'pro'},{k:'carbs',l:'Carbs',u:'g',cls:'carb'},{k:'fat',l:'Fat',u:'g',cls:'fat'},{k:'sugar',l:'Sugar',u:'g',cls:'sug'}];
   sheet.innerHTML=`<div class="handle"></div>
     <h3>Add food manually</h3>
     <span class="badge db">Enter the values for the amount you ate</span>
@@ -595,9 +649,10 @@ function openManual(){
     const eaten={}; sheet.querySelectorAll('[data-mf]').forEach(i=>eaten[i.dataset.mf]=Math.max(0,+i.value||0));
     // Convert the "amount eaten" values into the per-100g basis the app stores.
     const per100={}; const factor=100/grams;
-    ['calories','protein','carbs','sugar'].forEach(k=>per100[k]=eaten[k]*factor);
+    ['calories','protein','carbs','fat','sugar'].forEach(k=>per100[k]=eaten[k]*factor);
     const ts=Date.now();
     log.push({name,per100,grams,ts}); saveLog(log);
+    pushRecent({name,per100,servingG:grams}); // remember manual food, default to the amount entered
     justAddedTs=ts; closeSheet(); render(true); confettiBurst();
     if(navigator.vibrate)navigator.vibrate([30,40,30]); status('✓ Added to your log',false,1700);
   };
@@ -608,7 +663,7 @@ function openManual(){
 /* ===================== GOALS + SETTINGS ===================== */
 document.getElementById('btnGoals').onclick=openGoals;
 function openGoals(){
-  const defs=[{k:'calories',l:'Calories',u:'kcal'},{k:'protein',l:'Protein',u:'g'},{k:'carbs',l:'Carbs',u:'g'},{k:'sugar',l:'Sugar',u:'g'}];
+  const defs=[{k:'calories',l:'Calories',u:'kcal'},{k:'protein',l:'Protein',u:'g'},{k:'carbs',l:'Carbs',u:'g'},{k:'fat',l:'Fat',u:'g'},{k:'sugar',l:'Sugar',u:'g'}];
   sheet.innerHTML=`<div class="handle"></div><h3>Daily targets</h3><span class="badge db">Persists on this device</span>
     ${defs.map(d=>`<div style="margin-bottom:14px"><span class="field-label">${d.l} (${d.u})</span>
       <div class="gram-input"><input type="number" data-gk="${d.k}" value="${GOALS[d.k]}"/></div></div>`).join('')}
