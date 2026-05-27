@@ -84,6 +84,8 @@
   .scan-btn.lb .si{background:rgba(255,193,69,.14)}
   .scan-btn .st{font-size:14px;font-weight:700}
   .scan-btn .ss{font-size:11px;color:var(--muted);font-weight:500;margin-top:2px}
+  .manual-btn{width:100%;margin-top:12px;display:flex;align-items:center;justify-content:center;gap:8px;background:var(--card);border:1px dashed var(--line);color:var(--text);border-radius:16px;padding:15px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:.15s}
+  .manual-btn:active{transform:scale(.98);border-color:var(--accent);border-style:solid}
 
   /* ---------- LOG ---------- */
   .log{margin-top:24px}
@@ -125,6 +127,8 @@
   @keyframes scan{0%,100%{top:12%}50%{top:88%}}
   .cam-hint{position:absolute;bottom:130px;left:0;right:0;text-align:center;color:#fff;font-size:15px;font-weight:600;text-shadow:0 1px 6px #000}
   .cam-close{position:absolute;top:18px;right:18px;background:rgba(0,0,0,.55);border:none;color:#fff;width:44px;height:44px;border-radius:50%;font-size:20px;cursor:pointer;z-index:2}
+  .cam-photo-btn{position:absolute;bottom:46px;left:50%;transform:translateX(-50%);background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);color:#fff;backdrop-filter:blur(6px);padding:13px 22px;border-radius:99px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;z-index:2}
+  .cam-photo-btn:active{transform:translateX(-50%) scale(.96)}
 
   /* ---------- SHEET ---------- */
   .overlay{position:fixed;inset:0;background:rgba(5,7,11,.72);backdrop-filter:blur(5px);display:none;align-items:flex-end;justify-content:center;z-index:90}
@@ -148,9 +152,10 @@
   .field-label{display:block;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:9px}
   .gram-input input{width:100%;background:var(--card);border:1px solid var(--line);border-radius:13px;padding:15px 16px;color:var(--text);font-size:18px;font-weight:700;font-family:inherit;outline:none;transition:.15s}
   .gram-input input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(255,107,53,.13)}
-  .quick{display:flex;gap:8px;margin-top:10px;margin-bottom:20px}
-  .quick button{flex:1;background:var(--card);border:1px solid var(--line);color:var(--muted);padding:10px;border-radius:11px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:.15s}
+  .quick{display:flex;gap:8px;margin-top:10px;margin-bottom:20px;flex-wrap:wrap}
+  .quick button{flex:1;min-width:60px;background:var(--card);border:1px solid var(--line);color:var(--muted);padding:10px;border-radius:11px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:.15s}
   .quick button.active{border-color:var(--accent);color:var(--accent);background:rgba(255,107,53,.08)}
+  .quick-hint{font-size:12px;color:var(--muted);margin-top:9px}
   .serving-note{font-size:13px;color:var(--muted);margin:-10px 0 18px;display:flex;align-items:center;gap:9px}
   .serving-note button{background:none;border:1px solid var(--line);color:var(--accent);border-radius:9px;padding:6px 11px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit}
   .editable-macros{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:18px}
@@ -163,6 +168,18 @@
   .key-input input{flex:1;background:var(--card);border:1px solid var(--line);border-radius:11px;padding:12px 13px;color:var(--text);font-size:14px;font-family:inherit;outline:none}
   .key-help{font-size:12px;color:var(--muted);line-height:1.55}
   .key-help a{color:var(--accent)}
+
+  /* serving stepper + amount toggle */
+  .amt-toggle{display:flex;gap:8px;margin-bottom:14px}
+  .amt-toggle button{flex:1;background:var(--card);border:1px solid var(--line);color:var(--muted);padding:10px;border-radius:11px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:.15s}
+  .amt-toggle button.active{border-color:var(--accent);color:var(--accent);background:rgba(255,107,53,.08)}
+  .stepper{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:13px;padding:10px 14px;margin-bottom:8px}
+  .stepper button{width:42px;height:42px;border-radius:11px;border:1px solid var(--line);background:var(--card2);color:var(--text);font-size:22px;font-weight:700;cursor:pointer;font-family:inherit;flex-shrink:0}
+  .stepper button:active{transform:scale(.92);border-color:var(--accent)}
+  .stepper .sval{flex:1;text-align:center}
+  .stepper .sval .n{font-family:'Bricolage Grotesque',sans-serif;font-size:26px;font-weight:800;line-height:1}
+  .stepper .sval .u{display:block;font-size:11px;color:var(--muted);margin-top:2px}
+  .stepper-eq{text-align:center;font-size:12px;color:var(--muted);margin-bottom:18px}
 
   /* ---------- TOAST ---------- */
   .status{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--card2);border:1px solid var(--line);color:var(--text);padding:13px 22px;border-radius:99px;font-size:14px;font-weight:600;z-index:120;display:flex;align-items:center;gap:10px;box-shadow:var(--shadow);opacity:0;transition:.3s cubic-bezier(.22,1,.36,1)}
@@ -225,6 +242,7 @@
       <div><div class="st">Snap label</div><div class="ss">AI reads panel</div></div>
     </button>
   </section>
+  <button class="manual-btn" id="btnManual">✏️ Add food manually</button>
   <input type="file" id="labelFile" accept="image/*" capture="environment" style="display:none" />
 
   <!-- LOG -->
@@ -247,7 +265,9 @@
       <div class="scanline"></div>
     </div>
     <div class="cam-hint">Center the barcode in the frame</div>
+    <button class="cam-photo-btn" id="camPhotoBtn">📸 Use a photo instead</button>
   </div>
+  <input type="file" id="barcodeFile" accept="image/*" capture="environment" style="display:none" />
 
   <div class="overlay" id="sheetOverlay"><div class="sheet" id="sheet"></div></div>
   <div class="status" id="status"></div>
@@ -381,17 +401,42 @@ const video=document.getElementById('video'),camOverlay=document.getElementById(
 let stream=null,rafId=null,zxingControls=null,detecting=false;
 document.getElementById('btnBarcode').onclick=startBarcode;
 document.getElementById('camClose').onclick=stopCamera;
+// Photo fallback: snap a still of the barcode (works even with no live camera / no HTTPS)
+document.getElementById('camPhotoBtn').onclick=()=>document.getElementById('barcodeFile').click();
+document.getElementById('barcodeFile').onchange=async(ev)=>{
+  const file=ev.target.files[0];ev.target.value='';if(!file)return;
+  stopCamera();status('Reading barcode photo…',true);
+  try{
+    const code=await decodeBarcodeFromImage(file);
+    if(code)onBarcode(code);
+    else status('Couldn\\u2019t read that barcode — try a clearer, closer photo',false,3800);
+  }catch(e){status('⚠ Couldn\\u2019t read barcode from photo',false,3500);}
+};
 async function startBarcode(){
   camOverlay.classList.add('show');
   try{stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}});video.srcObject=stream;await video.play();}
-  catch(err){stopCamera();status('⚠ Camera blocked — allow access & use HTTPS',false,3500);return;}
+  catch(err){
+    // No live camera (blocked / not HTTPS): keep overlay open so the photo button is usable.
+    status('Live camera unavailable — tap “Use a photo instead”',false,4000);return;
+  }
   if('BarcodeDetector' in window){
     const det=new BarcodeDetector({formats:['ean_13','ean_8','upc_a','upc_e','code_128']});detecting=true;
     const tick=async()=>{if(!detecting)return;try{const cs=await det.detect(video);if(cs.length){onBarcode(cs[0].rawValue);return;}}catch(e){}rafId=requestAnimationFrame(tick);};tick();
   }else if(window.ZXing){
     const reader=new ZXing.BrowserMultiFormatReader();
     zxingControls=await reader.decodeFromVideoDevice(null,video,(res)=>{if(res)onBarcode(res.getText());});
-  }else{stopCamera();status('⚠ Barcode scanning unsupported here',false,3500);}
+  }else{status('Live scan unsupported — tap “Use a photo instead”',false,4000);}
+}
+// Decode a barcode from a still image file via ZXing.
+async function decodeBarcodeFromImage(file){
+  if(!window.ZXing) throw new Error('decoder unavailable');
+  const url=URL.createObjectURL(file);
+  try{
+    const reader=new ZXing.BrowserMultiFormatReader();
+    const result=await reader.decodeFromImageUrl(url);
+    return result?result.getText():null;
+  }catch(e){return null;}
+  finally{URL.revokeObjectURL(url);}
 }
 function stopCamera(){detecting=false;if(rafId)cancelAnimationFrame(rafId);if(zxingControls){try{zxingControls.stop();}catch(e){}zxingControls=null;}if(stream){stream.getTracks().forEach(t=>t.stop());stream=null;}camOverlay.classList.remove('show');}
 async function onBarcode(code){
@@ -415,49 +460,107 @@ document.getElementById('btnLabel').onclick=()=>{if(!getKey()){openSettingsSheet
 document.getElementById('labelFile').onchange=async(ev)=>{
   const file=ev.target.files[0];ev.target.value='';if(!file)return;status('Reading the label…',true);
   try{const b64=await fileToBase64(file);const food=await readLabel(b64,file.type);hideStatus();openAddSheet(food,true);}
-  catch(e){status('⚠ '+(e.message||'Label read failed'),false,4000);}
+  catch(e){status('⚠ '+(e.message||'Label read failed'),false,4500);}
 };
 function fileToBase64(file){return new Promise((res,rej)=>{const fr=new FileReader();fr.onload=()=>res(fr.result.split(',')[1]);fr.onerror=()=>rej(new Error('Could not read image'));fr.readAsDataURL(file);});}
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 async function readLabel(b64,mime){
   const prompt=`You are reading a nutrition facts label from a photo. Return ONLY raw JSON (no markdown) with this shape:
 {"name":string,"servingSizeG":number|null,"per100":{"calories":number,"protein":number,"carbs":number,"sugar":number}}
 All per100 values are PER 100 GRAMS. If the label gives per-serving values, convert to per-100g using the serving size in grams. Missing values = 0. name = product name if visible else "Scanned product".`;
+  const body=JSON.stringify({contents:[{parts:[{text:prompt},{inline_data:{mime_type:mime,data:b64}}]}],generationConfig:{temperature:0,responseMimeType:'application/json'}});
   const url=`https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${getKey()}`;
-  const res=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({contents:[{parts:[{text:prompt},{inline_data:{mime_type:mime,data:b64}}]}],generationConfig:{temperature:0,responseMimeType:'application/json'}})});
-  if(!res.ok){throw new Error(res.status===400?'Invalid API key':'Gemini error '+res.status);}
-  const data=await res.json();const text=data?.candidates?.[0]?.content?.parts?.[0]?.text||'{}';
-  const p=JSON.parse(text.replace(/```json|```/g,'').trim());
-  return{name:p.name||'Scanned product',servingG:p.servingSizeG||null,
-    per100:{calories:+p.per100?.calories||0,protein:+p.per100?.protein||0,carbs:+p.per100?.carbs||0,sugar:+p.per100?.sugar||0}};
+  // Retry on 503 (model overloaded) and 429 (rate limit) — these are temporary on Google's side.
+  const MAX=4; let lastStatus=0;
+  for(let attempt=0;attempt<MAX;attempt++){
+    if(attempt>0) status(`Gemini busy — retrying (${attempt}/3)…`,true);
+    let res;
+    try{ res=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body}); }
+    catch(netErr){ throw new Error('No connection — check your internet'); }
+    if(res.ok){
+      const data=await res.json();const text=data?.candidates?.[0]?.content?.parts?.[0]?.text||'{}';
+      let p; try{ p=JSON.parse(text.replace(/```json|```/g,'').trim()); }catch{ throw new Error('Couldn\\u2019t read that label — try a clearer photo'); }
+      return{name:p.name||'Scanned product',servingG:p.servingSizeG||null,
+        per100:{calories:+p.per100?.calories||0,protein:+p.per100?.protein||0,carbs:+p.per100?.carbs||0,sugar:+p.per100?.sugar||0}};
+    }
+    lastStatus=res.status;
+    if(res.status===503||res.status===429){ await sleep(800*Math.pow(2,attempt)); continue; } // backoff: 0.8s,1.6s,3.2s
+    if(res.status===400){ throw new Error('Invalid API key — check it in settings'); }
+    if(res.status===403){ throw new Error('Key not authorised — enable the API in Google AI Studio'); }
+    throw new Error('Gemini error '+res.status);
+  }
+  if(lastStatus===503) throw new Error('Gemini is overloaded right now — wait a moment and try again');
+  if(lastStatus===429) throw new Error('Daily free limit reached — try again later');
+  throw new Error('Gemini unavailable (error '+lastStatus+')');
 }
 
 /* ===================== ADD/CONFIRM SHEET ===================== */
 const sheetOverlay=document.getElementById('sheetOverlay'),sheet=document.getElementById('sheet');
-let current=null,currentGrams=100,editable=false;
-function openAddSheet(food,isEditable=false){current=food;editable=isEditable;currentGrams=food.servingG||100;drawSheet();sheetOverlay.classList.add('show');}
+let current=null,currentGrams=100,editable=false,amtMode='grams',servings=1;
+function openAddSheet(food,isEditable=false){
+  current=food;editable=isEditable;
+  if(food.servingG){ amtMode='servings'; servings=1; currentGrams=food.servingG; }
+  else { amtMode='grams'; currentGrams=100; }
+  drawSheet();sheetOverlay.classList.add('show');
+}
 function closeSheet(){sheetOverlay.classList.remove('show');current=null;}
 sheetOverlay.onclick=(e)=>{if(e.target===sheetOverlay)closeSheet();};
+function recalcGrams(){ if(amtMode==='servings'&&current.servingG){ currentGrams=Math.max(0.1,servings*current.servingG); } }
 function drawSheet(){
+  recalcGrams();
   const f=currentGrams/100;
   const macros=[{key:'calories',label:'Cal',cls:'cal'},{key:'protein',label:'Protein',cls:'pro'},{key:'carbs',label:'Carbs',cls:'carb'},{key:'sugar',label:'Sugar',cls:'sug'}];
   const previews=macros.map(m=>`<div class="preview ${m.cls}"><span class="num" data-pk="${m.key}">${r(current.per100[m.key]*f)}</span><span class="lbl">${m.label}</span></div>`).join('');
   const editBlock=editable?`<span class="field-label">Verify values (per 100g)</span><div class="editable-macros">
     ${macros.map(m=>`<div class="em-field"><label>${m.label} / 100g</label><input type="number" data-mk="${m.key}" value="${current.per100[m.key]}"/></div>`).join('')}</div>`:'';
-  const servingBtn=current.servingG?`<div class="serving-note">Label serving: ${current.servingG}g <button id="useServing">Use 1 serving</button></div>`:'';
+
+  // Amount section: servings stepper (if serving size known) or grams input.
+  const hasServing=!!current.servingG;
+  const toggle=hasServing?`<div class="amt-toggle">
+      <button data-mode="servings" class="${amtMode==='servings'?'active':''}">Servings</button>
+      <button data-mode="grams" class="${amtMode==='grams'?'active':''}">Grams</button>
+    </div>`:'';
+  let amountUI;
+  if(amtMode==='servings'&&hasServing){
+    amountUI=`<span class="field-label">How many servings did you have?</span>
+      ${toggle}
+      <div class="stepper">
+        <button id="sMinus">−</button>
+        <div class="sval"><span class="n" id="sNum">${servings%1?servings.toFixed(2).replace(/0+$/,'').replace(/\\.$/,''):servings}</span><span class="u">serving${servings===1?'':'s'} × ${current.servingG}g</span></div>
+        <button id="sPlus">＋</button>
+      </div>
+      <div class="stepper-eq">= ${r(currentGrams)}g total</div>`;
+  }else{
+    amountUI=`<span class="field-label">How many grams did you have?</span>
+      ${toggle}
+      <div class="gram-input"><input type="number" id="gramInput" value="${r(currentGrams)}" min="1" inputmode="decimal"/></div>
+      <div class="quick-hint">Type any amount above, or tap a shortcut:</div>
+      <div class="quick">${[30,50,100,150,200,250].map(g=>`<button data-g="${g}" class="${currentGrams===g?'active':''}">${g}g</button>`).join('')}</div>`;
+  }
+
   sheet.innerHTML=`<div class="handle"></div>
     <h3>${esc(current.name)}</h3>
     <span class="badge ${editable?'ai':'db'}">${editable?'🏷️ Read from label — verify below':'✓ Found in Open Food Facts'}</span>
     <div class="preview-grid">${previews}</div>
     ${editBlock}
-    <span class="field-label">Amount eaten (grams)</span>
-    <div class="gram-input"><input type="number" id="gramInput" value="${currentGrams}" min="1"/></div>
-    ${servingBtn}
-    <div class="quick">${[50,100,150,200].map(g=>`<button data-g="${g}" class="${currentGrams===g?'active':''}">${g}g</button>`).join('')}</div>
+    ${amountUI}
     <button class="primary" id="addBtn">＋ Add to log</button>`;
-  sheet.querySelector('#gramInput').oninput=(e)=>{currentGrams=Math.max(1,+e.target.value||0);refreshPreview();syncQuick();};
-  sheet.querySelectorAll('.quick button').forEach(b=>b.onclick=()=>{currentGrams=+b.dataset.g;document.getElementById('gramInput').value=currentGrams;refreshPreview();syncQuick();});
-  const us=sheet.querySelector('#useServing');if(us)us.onclick=()=>{currentGrams=current.servingG;document.getElementById('gramInput').value=currentGrams;refreshPreview();syncQuick();};
+
+  // wire amount controls
+  sheet.querySelectorAll('.amt-toggle button').forEach(b=>b.onclick=()=>{
+    amtMode=b.dataset.mode;
+    if(amtMode==='servings'&&servings<=0)servings=1;
+    drawSheet();
+  });
+  if(amtMode==='servings'&&hasServing){
+    sheet.querySelector('#sMinus').onclick=()=>{servings=Math.max(0.25,Math.round((servings-0.25)*100)/100);drawSheet();};
+    sheet.querySelector('#sPlus').onclick=()=>{servings=Math.round((servings+0.25)*100)/100;drawSheet();};
+  }else{
+    const gi=sheet.querySelector('#gramInput');
+    gi.onfocus=()=>gi.select();
+    gi.oninput=(e)=>{currentGrams=Math.max(1,+e.target.value||0);refreshPreview();syncQuick();};
+    sheet.querySelectorAll('.quick button').forEach(b=>b.onclick=()=>{currentGrams=+b.dataset.g;gi.value=currentGrams;refreshPreview();syncQuick();});
+  }
   sheet.querySelectorAll('[data-mk]').forEach(inp=>inp.oninput=()=>{current.per100[inp.dataset.mk]=+inp.value||0;refreshPreview();});
   sheet.querySelector('#addBtn').onclick=commitEntry;
 }
@@ -468,6 +571,40 @@ function commitEntry(){
   justAddedTs=ts;closeSheet();render(true);confettiBurst();if(navigator.vibrate)navigator.vibrate([30,40,30]);status('✓ Added to your log',false,1700);
 }
 
+/* ===================== MANUAL ENTRY ===================== */
+document.getElementById('btnManual').onclick=openManual;
+function openManual(){
+  const fields=[{k:'calories',l:'Calories',u:'kcal',cls:'cal'},{k:'protein',l:'Protein',u:'g',cls:'pro'},{k:'carbs',l:'Carbs',u:'g',cls:'carb'},{k:'sugar',l:'Sugar',u:'g',cls:'sug'}];
+  sheet.innerHTML=`<div class="handle"></div>
+    <h3>Add food manually</h3>
+    <span class="badge db">Enter the values for the amount you ate</span>
+    <span class="field-label">Food name</span>
+    <div class="gram-input" style="margin-bottom:18px"><input type="text" id="mName" placeholder="e.g. Homemade pasta" autocomplete="off"/></div>
+    <span class="field-label">Amount you ate (grams)</span>
+    <div class="gram-input" style="margin-bottom:18px"><input type="number" id="mGrams" placeholder="e.g. 250" min="1" inputmode="decimal"/></div>
+    <span class="field-label">Nutrition for that amount</span>
+    <div class="editable-macros">
+      ${fields.map(f=>`<div class="em-field"><label>${f.l} (${f.u})</label>
+        <input type="number" data-mf="${f.k}" placeholder="0" min="0" inputmode="decimal"/></div>`).join('')}
+    </div>
+    <button class="primary" id="mAdd" style="margin-top:18px">＋ Add to log</button>`;
+  sheet.querySelector('#mAdd').onclick=()=>{
+    const name=(sheet.querySelector('#mName').value||'').trim()||'Custom food';
+    const grams=Math.max(1,+sheet.querySelector('#mGrams').value||0);
+    if(!sheet.querySelector('#mGrams').value){ status('⚠ Enter how many grams you ate',false,2500); return; }
+    const eaten={}; sheet.querySelectorAll('[data-mf]').forEach(i=>eaten[i.dataset.mf]=Math.max(0,+i.value||0));
+    // Convert the "amount eaten" values into the per-100g basis the app stores.
+    const per100={}; const factor=100/grams;
+    ['calories','protein','carbs','sugar'].forEach(k=>per100[k]=eaten[k]*factor);
+    const ts=Date.now();
+    log.push({name,per100,grams,ts}); saveLog(log);
+    justAddedTs=ts; closeSheet(); render(true); confettiBurst();
+    if(navigator.vibrate)navigator.vibrate([30,40,30]); status('✓ Added to your log',false,1700);
+  };
+  sheetOverlay.classList.add('show');
+  setTimeout(()=>sheet.querySelector('#mName')?.focus(),300);
+}
+
 /* ===================== GOALS + SETTINGS ===================== */
 document.getElementById('btnGoals').onclick=openGoals;
 function openGoals(){
@@ -476,7 +613,15 @@ function openGoals(){
     ${defs.map(d=>`<div style="margin-bottom:14px"><span class="field-label">${d.l} (${d.u})</span>
       <div class="gram-input"><input type="number" data-gk="${d.k}" value="${GOALS[d.k]}"/></div></div>`).join('')}
     <button class="primary" id="saveGoalsBtn">✓ Save targets</button>`;
-  sheet.querySelector('#saveGoalsBtn').onclick=()=>{sheet.querySelectorAll('[data-gk]').forEach(i=>GOALS[i.dataset.gk]=Math.max(0,+i.value||0));saveGoals(GOALS);closeSheet();render(true);status('✓ Targets updated',false,1500);};
+  sheet.querySelector('#saveGoalsBtn').onclick=()=>{
+    sheet.querySelectorAll('[data-gk]').forEach(i=>{
+      const v=i.value.trim();
+      if(v!=='') GOALS[i.dataset.gk]=Math.max(0,+v||0); // blank = keep existing, don't zero it
+    });
+    saveGoals(GOALS);
+    GOALS=loadGoals(); // re-read from storage to confirm it stuck
+    closeSheet();render(true);status('✓ Targets saved',false,1700);
+  };
   sheetOverlay.classList.add('show');
 }
 document.getElementById('btnSettings').onclick=()=>openSettingsSheet(false);
